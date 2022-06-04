@@ -19,7 +19,11 @@ const Modal: React.FC<ModalProps> = ({ inputValue, optionsComponent }) => {
 	return (
 		<div className="Modal">
 			<Input
-				inputProps={{ autoFocus: true, value: inputValue, onChange: (e) => console.info("value", e.target.value) }}
+				inputProps={{
+					autoFocus: true,
+					value: inputValue,
+					onChange: () => console.clear(),
+				}}
 			/>
 			{optionsComponent}
 		</div>
