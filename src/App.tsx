@@ -26,16 +26,22 @@ const Modal: React.FC<ModalProps> = ({ inputValue, optionsComponent }) => {
 	);
 };
 
-const Options: React.FC = () => {
-	const options = [
-		{ label: "first", value: 1 },
-		{ label: "second", value: 2 },
-		{ label: "third", value: 3 },
-	];
+interface OptionsProps {
+	inputValue: string;
+}
+
+const Options: React.FC<OptionsProps> = ({ inputValue }) => {
+	const options = inputValue
+		? [
+				{ label: "first", value: 1 },
+				{ label: "second", value: 2 },
+				{ label: "third", value: 3 },
+		  ]
+		: [{ label: "no options", value: 0 }];
 
 	return (
 		<span>
-			{options.map((o, i) => (
+			{options?.map((o, i) => (
 				<span key={i}>
 					{o.label}
 					<br />
@@ -60,12 +66,16 @@ const App = () => {
 			<Popover
 				isOpen={isPopoverOpen}
 				positions={["bottom", "top"]}
-				content={<Modal inputValue={input} optionsComponent={<Options />} />}
+				content={<Modal inputValue={input} optionsComponent={<Options inputValue={input} />} />}
 				onClickOutside={() => {
 					setIsPopoverOpen(false);
 				}}
 			>
-				<input defaultValue={input} className={isPopoverOpen ? "hideme" : "showme"} />
+				<input
+					defaultValue={input}
+					className={isPopoverOpen ? "hideme" : "showme"}
+					onFocus={() => setIsPopoverOpen(true)}
+				/>
 			</Popover>
 		</div>
 	);
