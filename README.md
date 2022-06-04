@@ -1,3 +1,5 @@
+Small demonstration of how to show an input inside a modal component
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
